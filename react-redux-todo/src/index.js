@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import todoApp from './reducers/reducers.js'
 import App from './components/App';
 import './index.css';
 
-import { createStore } from 'redux'
-import todoApp from './reducers/reducers.js'
 import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './actions/actions.js'
 
 let store = createStore(todoApp)
@@ -29,9 +29,11 @@ store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ACTIVE))
 store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ALL))
 
 // Stop listening to state updates
-unsubscribe()
+// unsubscribe()
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
