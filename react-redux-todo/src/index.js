@@ -2,17 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import todoApp from './reducers/reducers.js'
-import App from './components/App';
-import './index.css';
+import todoApp from './todos/reducers/reducers.js'
+import App from './todos/components/App';
 
-import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './actions/actions.js'
+import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './todos/actions/actions.js'
 
 let store = createStore(todoApp)
 console.log(store.getState())
 
 // Every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener
+// eslint-disable-next-line
 let unsubscribe = store.subscribe(() =>
   console.log(store.getState())
 )
